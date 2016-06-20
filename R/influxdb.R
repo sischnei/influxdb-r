@@ -12,13 +12,13 @@ NULL
 #'   and the data frames contain the points.
 #'
 #' @export
-influxdb_query <- function (host, port = 8086, database, query, username = NULL, password = NULL) {
+influxdb_query <- function (host, port = 8086, database, username = NULL, password = NULL, query) {
   
-  response <- httr::GET(url = host, port = port, path = "query",
-                        query = list(db = database,
-                                     q = query,
-                                     u = username,
-                                     p = password))
+  PROTOCOL = "http"
+  
+  query = URLencode(gsub(pattern=" ", replacement="+", x=query))
+  url = paste0(PROTOCOL, "://",host,":",port,"/query?db=",database,"&p=",password,"&q=",query,"&u=",username,"&time_precision=s")
+  response = httr::GET(url)
   
   # Check for error. Not familiar enough with httr, there may be other ways it
   # communicates failure.
