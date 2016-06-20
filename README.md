@@ -1,15 +1,6 @@
 influxdb-r
 ==========
 
-
-# This library is not updated for InfluxDB 0.9. There are breaking changes to the API, use at your own risk.
-
-We encourage you to submit a pull request if you have a contribution. If you make a PR please explicitly call @beckettsean to get eyes on your PR.
-
-----------
-
-
-
 R library for InfluxDB. Currently only supports querying.
 
 Install using devtools:
@@ -24,8 +15,7 @@ Example usage:
 
 ```
 > library(influxdb)
-> results <- influxdb_query('sandbox.influxdb.org', 9061, 'jcheng', 'xxxxxxxx', 'joetest',
-    'SELECT * FROM /.*/')
+> results <- influxdb_query('127.0.0.1', 8086, 'mydb', 'user', 'password', 'SELECT * FROM testing')
 $some_series
         time sequence_number             email state value
 1 1386405189          802637       foo@bar.com    CO 191.3
